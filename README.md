@@ -40,7 +40,8 @@ When using the lead() window function to track purchases over time, the next_pro
 The issue happened because transactions were not always ordered correctly. To fix this, we explicitly specified orderBy("transaction_date") within the Window.partitionBy("customer_id").  
 ```python
 windowSpec = Window.partitionBy("customer_id").orderBy("transaction_date")
-transformedDF = transactionInputDF.withColumn("Next_Product_Name", lead("product_name").over(windowSpec))```
+transformedDF = transactionInputDF.withColumn("Next_Product_Name", lead("product_name").over(windowSpec))
+
 
 ### 2 **Issue: Writing Data to DBFS Created Multiple Small Files**
 **Problem:**  
