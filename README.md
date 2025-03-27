@@ -2,7 +2,7 @@
 
 ## 📌 **Project Overview**  
 This project demonstrates an **end-to-end Data Engineering Pipeline using PySpark** on Databricks.  
-The objective is to process and analyze **Apple product purchases** using **CSV and Delta tables**, applying transformations to derive insights.  
+The objective is to process and analyze **Apple product purchases** using **CSV, Parquet and Delta tables**, applying transformations to derive insights.  
 The final output is stored in **Databricks' DBFS** and **Delta tables**.  
 
 ---
