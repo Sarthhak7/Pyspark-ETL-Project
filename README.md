@@ -42,15 +42,14 @@ The issue happened because transactions were not always ordered correctly. To fi
 `windowSpec = Window.partitionBy("customer_id").orderBy("transaction_date")`
 `transformedDF = transactionInputDF.withColumn("Next_Product_Name", lead("product_name").over(windowSpec))`
 
-
 ### 2 **Issue: Writing Data to DBFS Created Multiple Small Files**
 **Problem:**  
 When writing transformed data to DBFS, the output was split into too many small files. This made querying inefficient and storage unoptimized.
 
 **Solution:**  
 Instead of writing without partitions, we partitioned the data by location to reduce small files and improve performance. 
-```python
-final_df.write.mode("overwrite").partitionBy("location").csv("dbfs:/FileStore/tables/apple_analysis/output")
+
+`final_df.write.mode("overwrite").partitionBy("location").csv("dbfs:/FileStore/tables/apple_analysis/output")`
 
 ### 3 **Issue: Reading Delta Table Was Failing in Extractor**
 **Problem:**  
@@ -58,8 +57,8 @@ When reading from the Delta Table, the extractor function returned an error beca
 
 **Solution:**  
 Instead of using .load(), we used .table() when reading Delta tables in the reader_factory.py.
-```python
-transcatioInputDF = spark.read.table("default.customer_delta_table_persist")
+
+`transcatioInputDF = spark.read.table("default.customer_delta_table_persist")`
 
 
 
